@@ -1,0 +1,13 @@
+人员榜单标签全量初始化：
+    需要将当前库中所有的人和所有的榜单join，来打标
+
+
+人员榜单增量计算逻辑(新增及变化，都会影响对应的BDRKSJ,RKSJ 字段 )：
+    榜单索引表：select * from jcsjr.SJ_PHBDFB  where TO_CHAR(BDRKSJ, 'YYYY-MM-DD')>='2023-06-01'
+    具体的榜单表：select * from BDMD.MD_JXSSBHQSMD where TO_CHAR(RKSJ, 'YYYY-MM-DD')>='2020-06-01'
+    1、当榜单有新增及变化：
+        需要将新增及变化的榜单与全量的人 join，来打标
+        具体使用到的py文件： renyuan_bangdan_zhibiao_bangdan_append.py
+    2、当人员有新增及变化：
+        需要将新增及变化的人和所有的榜单表 join 来打标
+        具体使用到的py文件为：
